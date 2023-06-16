@@ -50,6 +50,7 @@ onMounted(async () => {
   // show conversion
   SydneyFullScreenConv.initWithWaitlistUpdate({ cookLoc: {} }, 10);
   initSysConfig();
+  document.querySelector('#b_sydConvCont cib-serp').shadowRoot.querySelector('cib-conversation').shadowRoot.querySelector('cib-welcome-container').shadowRoot.querySelector('cib-logo').style.display = 'none'
 
   isShowLoading.value = false;
   hackStyle();
@@ -117,6 +118,8 @@ const hackStyle = () => {
     CIB.config.sydney.hostnamesToBypassSecureConnection = CIB.config.sydney.hostnamesToBypassSecureConnection.filter((x) => x !== location.hostname);
   }
   const serpEle = document.querySelector('cib-serp');
+  // const serpEle22 = document.querySelector('cib-serp');
+  
   // 居中
   serpEle?.setAttribute('alignment', 'center');
   const conversationEle = serpEle?.shadowRoot?.querySelector('cib-conversation') as HTMLElement;
@@ -140,6 +143,8 @@ interface IActionBarElement extends HTMLElement {
 
 const initChatPrompt = () => {
   const actionBarEle = document.querySelector('#b_sydConvCont > cib-serp')?.shadowRoot?.querySelector('#cib-action-bar-main') as IActionBarElement;
+  
+
   const oldHandleInputTextKey = actionBarEle.handleInputTextKey;
   actionBarEle.handleInputTextKey = function (ev: KeyboardEvent) {
     // 有提示词时，优先选择提示词
