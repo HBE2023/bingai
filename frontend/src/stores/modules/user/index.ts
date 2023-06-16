@@ -33,6 +33,8 @@ export const useUserStore = defineStore(
     };
 
     const tryCreateConversationId = async (tryCount = 0) => {
+      document.querySelector('#b_sydConvCont cib-serp').shadowRoot.querySelector('cib-conversation').shadowRoot.querySelector('cib-welcome-container').shadowRoot.querySelector('cib-logo').style.display = 'none'
+      console.log('333344444')
       if (tryCount >= maxTryCreateConversationIdCount) {
         console.log(`已重试 ${tryCount} 次，自动创建停止`);
         return;
