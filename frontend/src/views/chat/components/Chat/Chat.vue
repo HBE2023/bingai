@@ -51,7 +51,7 @@ onMounted(async () => {
   SydneyFullScreenConv.initWithWaitlistUpdate({ cookLoc: {} }, 10);
   initSysConfig();
   document.querySelector('#b_sydConvCont cib-serp').shadowRoot.querySelector('cib-conversation').shadowRoot.querySelector('cib-welcome-container').shadowRoot.querySelector('cib-logo').style.display = 'none'
-
+  console.log('1111122222')
   isShowLoading.value = false;
   hackStyle();
   initChatPrompt();
