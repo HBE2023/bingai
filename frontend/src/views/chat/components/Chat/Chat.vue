@@ -119,7 +119,7 @@ const hackStyle = () => {
   }
   const serpEle = document.querySelector('cib-serp');
   // const serpEle22 = document.querySelector('cib-serp');
-  
+
   // 居中
   serpEle?.setAttribute('alignment', 'center');
   const conversationEle = serpEle?.shadowRoot?.querySelector('cib-conversation') as HTMLElement;
@@ -143,7 +143,7 @@ interface IActionBarElement extends HTMLElement {
 
 const initChatPrompt = () => {
   const actionBarEle = document.querySelector('#b_sydConvCont > cib-serp')?.shadowRoot?.querySelector('#cib-action-bar-main') as IActionBarElement;
-  
+
 
   const oldHandleInputTextKey = actionBarEle.handleInputTextKey;
   actionBarEle.handleInputTextKey = function (ev: KeyboardEvent) {
@@ -283,25 +283,15 @@ const auth = async () => {
 <template>
   <LoadingSpinner :is-show="isShowLoading" />
   <main>
-    <div
-      v-if="isShowChatPrompt"
-      class="box-border fixed bottom-[110px] w-full flex justify-center px-[14px] md:px-[34px] z-999"
-      :class="{
+    <div v-if="isShowChatPrompt"
+      class="box-border fixed bottom-[110px] w-full flex justify-center px-[14px] md:px-[34px] z-999" :class="{
         'md:px-[170px]': isShowHistory,
         'xl:px-[220px]': isShowHistory,
-      }"
-    >
+      }">
       <div class="w-0 md:w-[60px]"></div>
-      <VirtualList
-        ref="scrollbarRef"
-        v-if="promptList.length > 0"
-        class="bg-white w-full max-w-[1060px] max-h-[390px] rounded-xl overflow-y-auto"
-        :data-key="'prompt'"
-        :data-sources="searchPromptList"
-        :data-component="ChatPromptItem"
-        :keeps="10"
-        @scroll="handlePromptListScroll"
-      />
+      <VirtualList ref="scrollbarRef" v-if="promptList.length > 0"
+        class="bg-white w-full max-w-[1060px] max-h-[390px] rounded-xl overflow-y-auto" :data-key="'prompt'"
+        :data-sources="searchPromptList" :data-component="ChatPromptItem" :keeps="10" @scroll="handlePromptListScroll" />
       <NEmpty v-else class="bg-white w-full max-w-[1060px] max-h-[390px] rounded-xl py-6" description="暂未设置提示词数据">
         <template #extra>
           <NButton secondary type="info" @click="isShowPromptSotre = true">去提示词库添加</NButton>
@@ -313,10 +303,12 @@ const auth = async () => {
     <!-- 服务器选择 -->
     <ChatServiceSelect />
     <!-- 授权 -->
-    <div v-if="isShowUnauthorizedModal" class="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-black/40 z-50">
+    <div v-if="isShowUnauthorizedModal"
+      class="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-black/40 z-50">
       <NResult class="box-border w-11/12 lg:w-[400px] px-4 py-4 bg-white rounded-md" status="403" title="401 未授权">
         <template #footer>
-          <NInput class="w-11/12" v-model:value="authKey" type="password" placeholder="请输入授权码" maxlength="60" clearable></NInput>
+          <NInput class="w-11/12" v-model:value="authKey" type="password" placeholder="请输入授权码" maxlength="60" clearable>
+          </NInput>
           <n-button class="mt-4" secondary type="info" :loading="isAuthBtnLoading" @click="auth">授权</n-button>
         </template>
       </NResult>
@@ -324,7 +316,7 @@ const auth = async () => {
   </footer>
 </template>
 <style>
-      #b_sydConvCont .cib-serp-main #cib-conversation-main #cib-chat-main .container-logo {
-        display: none !important;
-      }
+#b_sydConvCont .cib-serp-main #cib-conversation-main #cib-chat-main .container-logo {
+  display: none !important;
+}
 </style>
