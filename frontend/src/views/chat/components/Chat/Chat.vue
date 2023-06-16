@@ -318,3 +318,8 @@ const auth = async () => {
     </div>
   </footer>
 </template>
+<style>
+      #b_sydConvCont .cib-serp-main #cib-conversation-main #cib-chat-main .container-logo {
+        display: none !important;
+      }
+</style>
